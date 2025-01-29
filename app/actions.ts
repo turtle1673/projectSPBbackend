@@ -132,3 +132,7 @@ export const signOutAction = async () => {
   await supabase.auth.signOut();
   return redirect("/sign-in");
 };
+
+export async function register(formData:FormData) {
+  
+}
