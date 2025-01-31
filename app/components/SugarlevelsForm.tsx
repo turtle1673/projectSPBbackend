@@ -27,7 +27,7 @@ export default function SugarlevelsForm() {
                 {/* กล่องซ้าย */}
                 <div className="flex-1 flex justify-center items-center">
                     <div className="flex flex-col gap-3 w-[80%]">
-                        <div className="bg-[#8C5B00] text-white text-[25px] rounded-sm h-[8%] flex items-center justify-center border border-black">
+                        <div className="bg-[#8C5B00] text-white text-[25px] rounded-sm flex items-center justify-center border border-black">
                             คำนวณระดับน้ำตาลในเลือด
                         </div>
                         <input 
@@ -36,10 +36,10 @@ export default function SugarlevelsForm() {
                             value={sugarLevel}
                             onChange={(e) => setSugarLevel(e.target.value)}
                             min="0"
-                            className="bg-[#FFEEAD] text-black text-[25px] rounded-sm h-[8%] flex items-center justify-center border border-black text-center outline-none"
+                            className="bg-[#FFEEAD] text-black text-[25px] rounded-sm flex items-center justify-center border border-black text-center outline-none"
                         />
                         <div 
-                            className="bg-[#FFEEAD] text-black text-[25px] rounded-sm h-[8%] flex items-center justify-center border border-black cursor-pointer hover:bg-[#8C5B00] hover:text-[white]"
+                            className="bg-[#FFEEAD] text-black text-[25px] rounded-sm flex items-center justify-center border border-black cursor-pointer hover:bg-[#8C5B00] hover:text-[white]"
                             onClick={calculateSugarLevel}
                         >
                             คำนวณ
