@@ -17,7 +17,7 @@ export default function RootLayout({
       <html lang="en">
         <body>
           <Navbar/>
-          <div className='justify-self-center'>
+          <div>
           {children}
           </div>
         </body>

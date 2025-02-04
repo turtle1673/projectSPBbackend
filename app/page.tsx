@@ -1,54 +1,73 @@
 "use client"
-import { supabase } from "@/utils/supabase/client";
+
 import { useUser } from "@clerk/nextjs";
-import { useState } from "react";
+import { use, useState } from "react";
 
 export default function Home() {
 
-    const [username,setUsername] = useState('');
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const {user} = useUser();
+  const {user,isSignedIn} = useUser();
+  if(isSignedIn){
     
-
-  const handleSubmit = async (e:any)=>{
-    e.preventDefault()
-    const form = e.target
-    
-    const { data, error } = await supabase
-    .from('users_TestTable')
-    .insert([
-      { user_name:username,
-        user_email:email,
-        password:password,
-        createdBy:user?.primaryEmailAddress?.emailAddress
-      },
-    ])
-    .select()
-
-    if(!data){
-      console.log("error can't submit this form :(")
-    }else{
-      console.log("submit successfully!!! ", data)
-      form.reset()
-    }
-    if(error){
-      console.log("error!! : ",error)
-    }
-    console.log("User name : ", username)
-    console.log("Email : ", email)
-    console.log("Password : ", password)
   }
+
+  const [bloodvalue,setBloodvalue] = useState('')
+  const [result,setResult] = useState('')
+  const [advice,setAdvice] = useState('หากต้องการเก็บบันทึกกรุณา login')
+  const [errorform,setErrorform] = useState('')
+
+  function calSugar(value:number){
+    let sugarResult = ''
+    if(value<70 || value == 0){
+      sugarResult = 'คุณมีระดับน้ำตาลน้อยกว่าปกติ'
+  }else if(value>=70 && value<=100){
+      sugarResult = 'ปกติ'
+  }else if(value>100 && value<=125){
+      sugarResult = 'มีความเสี่ยง'
+  }else{
+    sugarResult = 'มีความเสี่ยงสูง'
+  }
+
+  return sugarResult
+  }
+
+
+  const handlerSubmit = (e:any) => {
+    e.preventDefault()
+
+    if(!bloodvalue){
+      setErrorform('จำเป็นต้องใส่ข้อมูลตัวเลขระดับน้ำตาลของคุณ')
+      setResult('')
+      return
+    }
+    const numValue = parseFloat(bloodvalue)
+    if(!numValue){
+      setErrorform('ข้อมูลต้องเป็นตัวเลขจำนวนเต็มบวก')
+      setResult('')
+      return
+    }
+
+    setResult(calSugar(numValue))
+    setErrorform('')
+    setErrorform('')
+  }
+
   return (
 
     <>
-      <div className="justify-self-center">
-        <form onSubmit={handleSubmit} className="bg-slate-400 p-4 flex flex-col">
-          <input onChange={e => setUsername(e.target.value)} type="text" placeholder="user name"/>
-          <input onChange={e => setEmail(e.target.value)} type="text" placeholder="email"/>
-          <input onChange={e => setPassword(e.target.value)} type="text" placeholder="password"/>
-          <button type="submit" className="bg-blue-600 text-white p-2">submit</button>
-        </form>
+      <div className="flex flex-col justify-center items-center gap-16 w-full">
+        <div className="h-[15vh] w-full bg-amber-400 text-center flex items-center justify-center"><p className="text-5xl font-sans font-bold text-white">Blood Sugar Calculator</p></div>
+        <div className="w-2/3 border-2 border-amber-200 rounded-lg p-12 flex flex-col gap-12 drop-shadow-xl">
+          <form className="flex flex-col gap-4">
+            <input type="text" onChange={e => setBloodvalue(e.target.value)} placeholder="blood sugar value" className="mx-20 p-4 outline-2 outline-offset-2 outline-amber-600 border-2 border-amber-500 rounded-lg"/>
+            <button onClick={handlerSubmit} className="uppercase py-4 px-6 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">calculate</button>
+          </form>
+          {
+            errorform && (<div className="bg-red-500 p-2 text-lg text-white w-fit rounded-lg mali-medium-italic">{errorform}</div>)
+          }
+        </div>
+        {
+         result && (<p className="text-6xl font-serif text-emerald-500 mali-bold-italic">{result}</p>)
+        }
       </div>
     </>
   );
