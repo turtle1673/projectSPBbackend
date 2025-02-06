@@ -1,18 +1,24 @@
 "use client"
 
 import { useUser } from "@clerk/nextjs";
-import { use, useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
+  const router = useRouter()
+  
+
   const {user,isSignedIn} = useUser();
-  if(isSignedIn){
-    
-  }
+  
+  useEffect(() => {
+    if (isSignedIn) {
+      router.push("/sugarcalculator");
+    }
+  }, [isSignedIn, router]);
 
   const [bloodvalue,setBloodvalue] = useState('')
   const [result,setResult] = useState('')
-  const [advice,setAdvice] = useState('หากต้องการเก็บบันทึกกรุณา login')
   const [errorform,setErrorform] = useState('')
 
   function calSugar(value:number){
@@ -59,7 +65,7 @@ export default function Home() {
         <div className="w-2/3 border-2 border-amber-200 rounded-lg p-12 flex flex-col gap-12 drop-shadow-xl">
           <form className="flex flex-col gap-4">
             <input type="text" onChange={e => setBloodvalue(e.target.value)} placeholder="blood sugar value" className="mx-20 p-4 outline-2 outline-offset-2 outline-amber-600 border-2 border-amber-500 rounded-lg"/>
-            <button onClick={handlerSubmit} className="uppercase py-4 px-6 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">calculate</button>
+            <button disabled={!bloodvalue} onClick={handlerSubmit} className="disabled:bg-amber-200 transition-all disabled:text-stone-500 uppercase py-4 px-6 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">calculate</button>
           </form>
           {
             errorform && (<div className="bg-red-500 p-2 text-lg text-white w-fit rounded-lg mali-medium-italic">{errorform}</div>)
