@@ -60,21 +60,7 @@ export default function Home() {
   return (
 
     <>
-      <div className="flex flex-col justify-center items-center gap-16 w-full">
-        <div className="h-[15vh] w-full bg-amber-400 text-center flex items-center justify-center"><p className="text-5xl font-sans font-bold text-white">Blood Sugar Calculator</p></div>
-        <div className="w-2/3 border-2 border-amber-200 rounded-lg p-12 flex flex-col gap-12 drop-shadow-xl">
-          <form className="flex flex-col gap-4">
-            <input type="text" onChange={e => setBloodvalue(e.target.value)} placeholder="blood sugar value" className="mx-20 p-4 outline-2 outline-offset-2 outline-amber-600 border-2 border-amber-500 rounded-lg"/>
-            <button disabled={!bloodvalue} onClick={handlerSubmit} className="disabled:bg-amber-200 transition-all disabled:text-stone-500 uppercase py-4 px-6 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">calculate</button>
-          </form>
-          {
-            errorform && (<div className="bg-red-500 p-2 text-lg text-white w-fit rounded-lg mali-medium-italic">{errorform}</div>)
-          }
-        </div>
-        {
-         result && (<p className="text-6xl font-serif text-emerald-500 mali-bold-italic">{result}</p>)
-        }
-      </div>
+
     </>
   );
 }
