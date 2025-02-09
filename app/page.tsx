@@ -1,6 +1,6 @@
 "use client"
 
-import { useUser } from "@clerk/nextjs";
+// import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -9,13 +9,13 @@ export default function Home() {
   const router = useRouter()
   
 
-  const {user,isSignedIn} = useUser();
+  // const {user,isSignedIn} = useUser();
   
-  useEffect(() => {
-    if (isSignedIn) {
-      router.push("/sugarcalculator");
-    }
-  }, [isSignedIn, router]);
+  // useEffect(() => {
+  //   if (isSignedIn) {
+  //     router.push("/sugarcalculator");
+  //   }
+  // }, [isSignedIn, router]);
 
   const [bloodvalue,setBloodvalue] = useState('')
   const [result,setResult] = useState('')
