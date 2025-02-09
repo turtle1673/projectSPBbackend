@@ -27,12 +27,12 @@ export default function SugarlevelsForm() {
     };
 
     return (
-        <section className="flex items-center justify-center h-screen">
-            <div className="bg-gray-300/20 text-black text-center w-[800px] h-[500px] rounded-lg shadow-lg flex border-2 border-white">
+        <section className="flex items-center justify-center min-h-screen px-4 sm:px-8 md:px-16 lg:px-32">
+            <div className="bg-gray-300/20 text-black text-center w-full sm:w-[600px] md:w-[700px] lg:w-[800px] h-auto rounded-lg shadow-lg flex border-2 border-white">
                 {/* กล่องซ้าย */}
                 <div className="flex-1 flex justify-center items-center">
                     <div className="flex flex-col gap-3 w-[80%]">
-                        <div className="bg-700 text-white text-[25px] rounded-sm flex items-center justify-center border-2 border-white">
+                        <div className="bg-700 text-white text-sm sm:text-base md:text-xl lg:text-2xl rounded-sm flex items-center justify-center border-2 border-white">
                             คำนวณระดับน้ำตาลในเลือด
                         </div>
                         <input 
@@ -40,10 +40,10 @@ export default function SugarlevelsForm() {
                             placeholder="ระดับน้ำตาลในเลือด" 
                             value={sugarLevel}
                             onChange={(e) => setSugarLevel(e.target.value)}
-                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white text-center outline-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="bg-white text-black text-sm sm:text-base md:text-lg lg:text-xl rounded-sm flex items-center justify-center border-2 border-white text-center outline-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <div 
-                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-blue-700 hover:text-[white] "
+                            className="bg-white text-sm sm:text-base md:text-lg lg:text-xl rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-blue-700 hover:text-white"
                             onClick={calculateSugarLevel}
                         >
                             คำนวณ
@@ -55,21 +55,21 @@ export default function SugarlevelsForm() {
                 <div className="flex-1 flex items-center justify-start">
                     <div className="flex flex-col gap-10 w-[95%]">
                         <div className="flex flex-col">    
-                            <div className="text-white text-[25px] font-bold mr-[250px]">NOTE</div>
+                            <div className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-bold mr-[250px]">NOTE</div>
                             <div className="border-2 border-white rounded-lg h-[200px] p-2 flex items-start overflow-y-auto">
                                 <div className="text-white font-bold text-left whitespace-pre-line w-full">
                                     {note}
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-row justify-center gap-16 items-center h-[50px]">
+                        <div className="flex flex-row justify-center gap-8 sm:gap-16 items-center h-[50px]">
                             <div 
-                                className="bg-white text-[25px] rounded-lg border border-white w-[25%] cursor-pointer hover:bg-red-600 hover:text-[white]"
+                                className="bg-white text-sm sm:text-base md:text-lg lg:text-xl rounded-lg border border-white w-[30%] sm:w-[25%] cursor-pointer hover:bg-red-600 hover:text-white"
                                 onClick={() => { setSugarLevel(""); setNote(""); }}
                             >
                                 Clear
                             </div>
-                            <div className="bg-white text-[25px] rounded-lg w-[25%] border border-white cursor-pointer hover:bg-green-600 hover:text-[white]">
+                            <div className="bg-white text-sm sm:text-base md:text-lg lg:text-xl rounded-lg w-[30%] sm:w-[25%] border border-white cursor-pointer hover:bg-green-600 hover:text-white">
                                 Save
                             </div>
                         </div>

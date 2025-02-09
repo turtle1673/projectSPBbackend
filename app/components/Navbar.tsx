@@ -17,11 +17,13 @@ function Navbar() {
 
     return (
       <div className="bg-gray-300/20 flex items-center justify-between px-4 py-2 drop-shadow-lg text-white relative border-b border-white">
-  <div className="font-bold flex-grow text-center">Mysite</div>
+    <div className="font-bold flex-grow text-center">
+      <Link href="/">Mysite</Link>
+    </div>
 
   {/* Mobile Menu Button */}
   <button
-    className="text-2xl md:hidden p-2 absolute right-14"  // เพิ่มขนาด margin-right
+    className="text-2xl md:hidden p-2 absolute right-14"  
     onClick={() => setIsOpen(!isOpen)}
   >
     <RiMenuLine />
