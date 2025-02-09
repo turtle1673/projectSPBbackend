@@ -43,7 +43,7 @@ export default function Home() {
 
     <>
       <div className="flex justify-center items-center min-h-screen ">
-  <form onSubmit={handleSubmit} className="border-2 border-white p-8 rounded-lg shadow-lg w-full max-w-sm space-y-6">
+  <form onSubmit={handleSubmit} className="border-2 border-white p-8 rounded-lg shadow-lg w-full max-w-sm space-y-6 bg-gray-300/20">
     <h2 className="text-2xl font-semibold text-center text-white">Create an Account</h2>
     <div className="space-y-4">
       <input 
@@ -65,7 +65,7 @@ export default function Home() {
         className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </div>
-    <button type="submit" className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold">
+    <button type="submit" className="w-full py-3 bg-blue-600/80 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 font-bold">
       Submit
     </button>
   </form>

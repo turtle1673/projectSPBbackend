@@ -13,37 +13,43 @@ function Navbar() {
 
     useEffect(() => {
         console.log(path);
-    }, [path]); // Ensure it logs when the path changes
+    }, [path]);
 
     return (
-        <div className='flex items-center justify-between px-4 py-2 drop-shadow-lg text-white relative border-b border-white'>
-            {/* Mobile Menu Button */}
-            <button 
-                className="text-2xl md:hidden p-2" 
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                <RiMenuLine />
-            </button>
+      <div className="bg-gray-300/20 flex items-center justify-between px-4 py-2 drop-shadow-lg text-white relative border-b border-white">
+  <div className="font-bold flex-grow text-center">Mysite</div>
 
-            {/* Navigation Links */}
-            <ul className={`absolute md:static  md:bg-transparent shadow-md md:shadow-none p-4 md:p-0 rounded-br-md transition-all duration-300 flex flex-col md:flex-row font-medium tracking-wide gap-4
-                ${isOpen ? "flex z-10 left-0 top-full  md:bg-transparent md:w-auto" : "hidden md:flex"}`}
-            >
-              <li><Link href="/" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">หน้าแรก</Link></li>
-              <li><Link href="/sugarlevels" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">คำนวณระดับน้ำตาล</Link></li>
-              <li><Link href="/sugarlevels" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">หน้า3</Link></li>
-            </ul>
+  {/* Mobile Menu Button */}
+  <button
+    className="text-2xl md:hidden p-2 absolute right-14"  // เพิ่มขนาด margin-right
+    onClick={() => setIsOpen(!isOpen)}
+  >
+    <RiMenuLine />
+  </button>
 
-            {/* Authentication Button (Login/Sign In) */}
-            <div className="hidden md:block">
-                {isSignedIn ? <UserButton /> : <Link href={"/sign-in"}><button className="bg-blue-500 text-white px-4 py-2 rounded-lg">Login</button></Link>}
-            </div>
+  <div className="w-full">
+    {/* Navigation Links */}
+    <ul
+      className={`absolute md:static md:bg-transparent shadow-md md:shadow-none p-4 md:p-0 rounded-br-md transition-all duration-300 flex flex-col md:flex-row font-medium tracking-wide gap-4
+        ${isOpen ? "flex z-10 right-0 top-full md:bg-transparent md:w-auto" : "hidden md:flex justify-center space-x-6"}`}
+    >
+      <li><Link href="/" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">หน้าแรก</Link></li>
+      <li><Link href="/sugarlevels" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">คำนวณระดับน้ำตาล</Link></li>
+      <li><Link href="/page3" className="block md:inline hover:border-b-2 hover:border-white font-bold transition-all duration-300">หน้า 3</Link></li>
+    </ul>
+  </div>
 
-            {/* Mobile Login Button */}
-            <div className="md:hidden">
-                {isSignedIn ? <UserButton /> : <Link href={"/sign-in"}><button className="bg-blue-500 text-black px-4 py-2 rounded-lg">Login</button></Link>}
-            </div>
-        </div>
+  {/* Authentication Button (Login/Sign In) */}
+  <div className="hidden md:block absolute right-4 top-1.5">
+    {isSignedIn ? <UserButton /> : <Link href={"/sign-in"}><button className="bg-blue-500 text-white px-4 rounded-lg h-7">Login</button></Link>}
+  </div>
+
+  {/* Mobile Login Button */}
+  <div className="md:hidden absolute right-4 top-1.5">
+    {isSignedIn ? <UserButton /> : <Link href={"/sign-in"}><button className="bg-blue-500 text-white px-4 rounded-lg h-7">Login</button></Link>}
+  </div>
+</div>
+
     );
 }
 

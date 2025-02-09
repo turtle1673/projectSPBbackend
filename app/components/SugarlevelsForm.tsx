@@ -7,6 +7,11 @@ export default function SugarlevelsForm() {
     const [note, setNote] = useState("");
 
     const calculateSugarLevel = () => {
+        if (sugarLevel.trim() === "" || isNaN(Number(sugarLevel)) || Number(sugarLevel) < 0) {
+            setNote("❌ โปรดใส่ค่าที่ถูกต้อง (ตัวเลขบวกเท่านั้น)");
+            return;
+        }
+
         const level = Number(sugarLevel);
         if (level <= 69) {
             setNote('คุณอยู่ในภาวะน้ำตาลในเลือดต่ำ\n\n🔹 คำแนะนำ:\n- ควรกินอาหารที่มีคาร์โบไฮเดรตค่อยๆ ดูดซึม เช่น ขนมปังขาว หรือแครกเกอร์ เพื่อให้ระดับน้ำตาลในเลือดกลับสู่สภาวะปกติ');
@@ -17,13 +22,13 @@ export default function SugarlevelsForm() {
         } else if (level >= 126) {
             setNote('คุณมีความเสี่ยงเป็นโรคเบาหวาน\n\n❗ คำแนะนำ:\n- ควรไปพบแพทย์เพื่อตรวจยืนยันและรับคำแนะนำ\n- ปรับพฤติกรรมการกิน หลีกเลี่ยงน้ำตาลและไขมันทรานส์\n- ออกกำลังกายอย่างสม่ำเสมอ และลดน้ำหนักถ้าจำเป็น\n- อาจต้องใช้ยาในกรณีที่แพทย์เห็นสมควร\n- ควบคุมระดับน้ำตาลอย่างเคร่งครัดเพื่อป้องกันภาวะแทรกซ้อน');
         } else {
-            setNote("ERROR โปรดใส่ค่าที่ถูกต้อง"); // ถ้าค่าผิดปกติ ไม่แสดงอะไร
+            setNote("❌ โปรดใส่ค่าที่ถูกต้อง");
         }
     };
 
     return (
         <section className="flex items-center justify-center h-screen">
-            <div className="text-black text-center w-[800px] h-[500px] rounded-lg shadow-lg flex border-2 border-white">
+            <div className="bg-gray-300/20 text-black text-center w-[800px] h-[500px] rounded-lg shadow-lg flex border-2 border-white">
                 {/* กล่องซ้าย */}
                 <div className="flex-1 flex justify-center items-center">
                     <div className="flex flex-col gap-3 w-[80%]">
@@ -35,11 +40,10 @@ export default function SugarlevelsForm() {
                             placeholder="ระดับน้ำตาลในเลือด" 
                             value={sugarLevel}
                             onChange={(e) => setSugarLevel(e.target.value)}
-                            min="1"
-                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white text-center outline-none"
+                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white text-center outline-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <div 
-                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-blue-700 hover:text-[white]"
+                            className="bg-white text-black text-[25px] rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-blue-700 hover:text-[white] "
                             onClick={calculateSugarLevel}
                         >
                             คำนวณ
