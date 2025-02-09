@@ -1,5 +1,8 @@
-import { SignIn } from '@clerk/nextjs'
+// import { SignIn } from '@clerk/nextjs'
 
-export default function Page() {
-  return <SignIn />
-}
+// export default function Page() {
+//   return <div className='justify-self-center'>
+//     <SignIn />
+//     </div>
+    
+// }

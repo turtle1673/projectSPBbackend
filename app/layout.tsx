@@ -1,10 +1,10 @@
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton
-} from '@clerk/nextjs'
+// import {
+//   ClerkProvider,
+//   SignInButton,
+//   SignedIn,
+//   SignedOut,
+//   UserButton
+// } from '@clerk/nextjs'
 import './globals.css'
 import Navbar from './components/Navbar'
 export default function RootLayout({
@@ -13,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
       <html lang="en">
         <body className='' style={{ 
                 backgroundImage: "url('https://i.pinimg.com/originals/0e/0d/72/0e0d72395ecbc6682ea8e7276bc6fe06.gif')", 
@@ -26,11 +26,11 @@ export default function RootLayout({
                 overflow: 'hidden' 
               }}>
           <Navbar/>
-          <div className='justify-self-center'>
+          <div>
           {children}
           </div>
         </body>
       </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   )
 }

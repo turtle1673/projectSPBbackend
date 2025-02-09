@@ -1,24 +1,12 @@
 "use client"
-
-import { UserButton, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { RiMenuLine } from "react-icons/ri";
 
-function Navbar() {
-    const { user, isSignedIn } = useUser();
-    const [isOpen, setIsOpen] = useState(false);
     const path = usePathname();
 
     useEffect(() => {
-        console.log(path);
-    }, [path]);
-
-    return (
-      <div className="bg-gray-300/20 flex items-center justify-between px-4 py-2 drop-shadow-lg text-white relative border-b border-white">
-    <div className="font-bold flex-grow text-center">
-      <Link href="/">Mysite</Link>
     </div>
 
   {/* Mobile Menu Button */}
@@ -54,5 +42,3 @@ function Navbar() {
 
     );
 }
-
-export default Navbar;
