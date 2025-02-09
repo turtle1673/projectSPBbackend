@@ -1,7 +1,7 @@
 "use client"
 
 import { UserButton, useUser } from '@clerk/nextjs'
-import { AllowlistIdentifier } from '@clerk/nextjs/dist/types/server';
+import { AllowlistIdentifier, User } from '@clerk/nextjs/dist/types/server';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect } from 'react'
@@ -26,7 +26,7 @@ export default function Navbar() {
       
     </div>
     <div className='col-span-1 flex justify-end '>
-    { isSignedIn? <UserButton /> : <Link href={"/sign-in"}><button>Login</button></Link> }
+    { isSignedIn? <UserButton/> : <Link href={"/sign-in"}><button>Login</button></Link> }
     </div>
     </div>
   )
