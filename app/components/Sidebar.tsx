@@ -27,7 +27,7 @@ const Sidebar = () => {
     return (
         <div className={`h-screen bg-black text-white flex flex-col border-r border-gray-700 ${isCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 shadow-xl`}>            
             <div className="relative flex items-center justify-between h-20 border-b border-gray-700 px-4">
-                {!isCollapsed && <h1 className="text-xl font-bold">Mysite</h1>}
+                {!isCollapsed && <h1 className="text-xl font-bold">Calculate sugar</h1>}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
                     className='text-white focus:outline-none'

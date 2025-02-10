@@ -43,7 +43,7 @@ export default function SugarlevelsForm() {
                             className="bg-white text-black text-sm sm:text-base md:text-lg lg:text-xl rounded-sm flex items-center justify-center border-2 border-white text-center outline-none focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                         <div 
-                            className="bg-white text-sm sm:text-base md:text-lg lg:text-xl rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-blue-700 hover:text-white"
+                            className="bg-white text-sm sm:text-base md:text-lg lg:text-xl rounded-sm flex items-center justify-center border-2 border-white cursor-pointer hover:bg-black hover:text-white"
                             onClick={calculateSugarLevel}
                         >
                             คำนวณ

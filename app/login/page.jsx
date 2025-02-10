@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { login, signup } from "./actions";
+import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
 export default function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -67,31 +68,32 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <form className="bg-gray-300/20 border-2 border-white rounded-lg shadow-lg w-[1800px] max-w-full">
-        <h2 className="text-2xl font-bold text-center text-white">
+    <div className="flex justify-center items-center min-h-screen relative">
+     <div className=""></div>
+      <form className="relative  backdrop-blur-2xl border border-white/30 shadow-2xl rounded-3xl p-8 w-96 transition transform hover:scale-105 hover:shadow-purple-500">
+        <h2 className="text-3xl font-extrabold text-center text-white mb-6 tracking-wide">
           {isLogin ? "เข้าสู่ระบบ" : "สมัครสมาชิก"}
         </h2>
 
-        <div className="flex justify-center gap-4 mb-4 border rounded-lg">
-  <div className="border rounded-lg flex-grow">
+        <div className="">
+  <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
     <button
       type="button"
       onClick={() => handleFormSwitch(true)}
-      className={`py-2 font-bold transition duration-300 ${
-        isLogin ? "bg-blue-500 text-white" : "text-white"
+      className={`flex-1 py-3 text-lg font-bold transition-all ${
+        isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
       }`}
     >
       Login
     </button>
   </div>
 
-  <div className="border rounded-lg flex-grow">
+  <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
     <button
       type="button"
       onClick={() => handleFormSwitch(false)}
-      className={`py-2 font-bold rounded-lg transition duration-300 ${
-        !isLogin ? "bg-blue-500 text-white" : "text-white"
+      className={`flex-1 py-3 text-lg font-bold transition-all ${
+        !isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
       }`}
     >
       Signup
@@ -100,9 +102,11 @@ export default function AuthPage() {
 </div>
 
 
-        <div className="mb-4">
-          <label htmlFor="email" className="block font-bold text-white">
+        <div className="mb-4 relative">
+        
+          <label htmlFor="email" className="text-white font-bold">
             Email Address:
+            <FaEnvelope className="absolute left-4 mt-4 text-gray-300 text-lg" />
           </label>
           <input
             id="email"
@@ -111,13 +115,15 @@ export default function AuthPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 pl-12 py-3 border border-white/50 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="password" className="block font-bold text-white">
+        <div className="mb-4 relative">
+        
+          <label htmlFor="password" className="text-white font-bold">
             Password:
+            <FaLock className="absolute left-4 mt-4 text-gray-300 text-lg" />
           </label>
           <input
             id="password"
@@ -126,10 +132,10 @@ export default function AuthPage() {
             value={password}
             onChange={handlePasswordChange}
             required
-            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-full px-4 pl-12 py-3 border border-white/50 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           {error.length > 0 && !isLogin && (
-            <ul className="text-red-500 text-sm mt-1">
+            <ul className="text-red-400 text-sm mt-1">
               {error.map((err, index) => (
                 <li key={index}>{err}</li>
               ))}
@@ -138,21 +144,27 @@ export default function AuthPage() {
         </div>
 
         {!isLogin && (
-          <div className="mb-4">
-            <label htmlFor="confirm-password" className="block font-bold text-white">
+          <div className="mb-4 relative">
+            <label htmlFor="confirm-password" className="text-white font-bold">
               Confirm Password:
+              <FaLock className="absolute left-4 mt-4 text-gray-300 text-lg" />
             </label>
-            <input
+            
+            <input 
               id="confirm-password"
               name="confirm-password"
               type="password"
+              
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
+              
               required
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              
+              className="w-full px-4 pl-12 py-3 border border-white/50 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" 
+              
             />
             {confirmPasswordError && (
-              <p className="text-red-500 text-sm mt-1">{confirmPasswordError}</p>
+              <p className="text-red-400 text-sm mt-1">{confirmPasswordError}</p>
             )}
           </div>
         )}
@@ -162,21 +174,21 @@ export default function AuthPage() {
           disabled={
             (isLogin && error.length > 0) || confirmPasswordError || (!isLogin && password !== confirmPassword)
           }
-          className={`w-full font-bold py-2 rounded-lg transition duration-300 ${
+          className={`w-full py-3 rounded-lg font-bold text-white text-lg transition-all duration-300 ${
             (isLogin && error.length > 0) || confirmPasswordError || (!isLogin && password !== confirmPassword)
               ? "bg-gray-400 cursor-not-allowed"
-              : "bg-blue-500 text-white hover:bg-blue-600"
+              : "bg-gradient-to-r from-purple-500 to-blue-500 hover:opacity-90 hover:shadow-lg hover:shadow-purple-400"
           }`}
         >
           {isLogin ? "Login" : "Signup"}
         </button>
 
         {isLogin && (
-          <p className="text-center mt-4 text-white">
+          <p className="text-center mt-4 text-white text-sm">
             Not a member?{" "}
             <span
               onClick={() => handleFormSwitch(false)}
-              className="text-blue-500 cursor-pointer hover:underline"
+              className="text-blue-300 cursor-pointer hover:underline"
             >
               Signup now
             </span>
