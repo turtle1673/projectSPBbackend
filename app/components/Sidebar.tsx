@@ -2,7 +2,7 @@
 
 import { logout } from "../logout/actions";
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { RxHamburgerMenu } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
@@ -10,6 +10,7 @@ import { MdBloodtype } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
 import { FiChevronLeft } from "react-icons/fi";
+
 
 const navElements = [
     { title: 'หน้าหลัก', href: '/', icon: <AiFillHome className='w-6 h-6' /> },
@@ -19,23 +20,7 @@ const navElements = [
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); 
     const pathname = usePathname();
-
-    useEffect(() => {
-        const checkLoginStatus = () => {
-            const loggedIn = true;
-            setIsLoggedIn(loggedIn);
-        };
-
-        checkLoginStatus();
-    }, []);
-
-    useEffect(() => {
-        if (isLoggedIn) {
-            setIsCollapsed(true);
-        }
-    }, [isLoggedIn]);
 
     if (pathname === "/login") return null;
 
