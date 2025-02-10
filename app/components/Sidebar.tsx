@@ -19,14 +19,12 @@ const navElements = [
 
 const Sidebar = () => {
     const [isCollapsed, setIsCollapsed] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // State for managing login status
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
     const pathname = usePathname();
 
     useEffect(() => {
-        // Assuming you have a way to track login, such as checking a token or session
         const checkLoginStatus = () => {
-            // Check for login (this can be customized based on your app's login logic)
-            const loggedIn = true; // Example logic: change this based on actual login status
+            const loggedIn = true;
             setIsLoggedIn(loggedIn);
         };
 
@@ -35,7 +33,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         if (isLoggedIn) {
-            setIsCollapsed(true); // Collapse the sidebar after login
+            setIsCollapsed(true);
         }
     }, [isLoggedIn]);
 
