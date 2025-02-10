@@ -12,7 +12,7 @@ import Sidebar from "./components/Sidebar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Sidebar",
+  title: "วัดระดับน้ำตาล",
 };
 
 export default function RootLayout({ children }) {
