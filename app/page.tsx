@@ -1,11 +1,7 @@
-import Image from "next/image";
-import { logout } from "./logout/actions";
-import DemoClientComponent from "./components/DemoClientComponent";
-
-export default function Home() {
+export default function Settings() {
   return (
-    
-    <main className="">
+    <main className="flex min-h-screen flex-col items-center justify-center p-8 text-gray-100">
+      <header>Home</header>
     </main>
   );
 }
