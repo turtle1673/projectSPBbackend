@@ -19,7 +19,7 @@ const navElements = [
 ];
 
 const Sidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const pathname = usePathname();
 
     if (pathname === "/login") return null;
