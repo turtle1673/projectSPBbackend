@@ -2,10 +2,11 @@
 
 import { use, useState } from 'react'
 import { calSugar } from '../actions'
+import { createClient } from '@/utils/supabase/client'
 
 
 interface calSugarInterface { //ลองใช้ interface
-    result:string
+    resul:string
 }
 
 export default function SugarForm() {
@@ -36,8 +37,26 @@ export default function SugarForm() {
           })
       
         const data:calSugarInterface = await res.json();
-        setResult(data.result);
+        setResult(data.resul);
         setErrorform('')
+    }
+
+    const savehandler = async (e:any) => {
+      e.preventDefault()
+      const supabase = createClient()
+      const { data, error } = await supabase
+      .from('blood_sugar')
+      .insert([
+        { blood_value: blood, blood_result: result },
+      ])
+      .select()
+        
+      if(error){
+        console.log('Some error happend ', error)
+      }
+
+      setResult('')
+      setBlood('')
     }
 
   return (
@@ -49,7 +68,7 @@ export default function SugarForm() {
             <input onChange={e => setBlood(e.target.value)} type="text" placeholder="blood sugar value" className="mx-20 p-4 outline-2 outline-offset-2 outline-amber-600 border-2 border-amber-500 rounded-lg"/>
             <div className='flex gap-32 justify-center'>
             <button onClick={calhandler} className="disabled:bg-amber-200 transition-all disabled:text-stone-500 uppercase py-4 px-32 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">calculate</button>
-            <button className="disabled:bg-amber-200 transition-all disabled:text-stone-500 uppercase py-4 px-32 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">save</button>
+            <button onClick={savehandler} disabled={!blood || !result} className="disabled:bg-amber-200 transition-all disabled:text-stone-500 uppercase py-4 px-32 bg-amber-400 rounded-lg font-semibold text-stone-600 mali-bold">save</button>
             </div>
           </form>
           {
