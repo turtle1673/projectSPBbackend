@@ -31,9 +31,8 @@ function page() {
     hello
     {bloodsugars && (
         <div className=''>
-            {bloodsugars.map(bloodsugar => (
-            <BloodCart key={bloodsugar.id} bloodsugar={bloodsugar}/>
-                
+            {bloodsugars.map(e => (
+            <BloodCart key={e.id} bloodsu={e}/>
             ))}
         </div>
     )}
