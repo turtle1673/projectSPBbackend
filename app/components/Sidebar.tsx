@@ -4,38 +4,46 @@ import { logout } from "../logout/actions";
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { AiOutlineClose, AiOutlineDashboard, AiOutlineMenu, AiOutlineSetting, AiOutlineUser } from 'react-icons/ai';
+import { RxHamburgerMenu } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { MdBloodtype } from "react-icons/md";
+import { FaUser } from "react-icons/fa6";
+import { AiFillHome } from "react-icons/ai";
+import { FiChevronLeft } from "react-icons/fi";
+
 
 const navElements = [
-    { title: 'Dashboard', href: '/dashboard', icon: <AiOutlineDashboard className='w-6 h-6' /> },
-    { title: 'โปรไฟล์', href: '/profile', icon: <AiOutlineUser className='w-6 h-6' /> },
+    { title: 'หน้าหลัก', href: '/', icon: <AiFillHome className='w-6 h-6' /> },
+    { title: 'โปรไฟล์', href: '/profile', icon: <FaUser className='w-6 h-6' /> },
     { title: 'วัดระดับน้ำตาล', href: '/sugarlevels', icon: <MdBloodtype className='w-6 h-6' /> },
 ];
 
 const Sidebar = () => {
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    const [isCollapsed, setIsCollapsed] = useState(true);
     const pathname = usePathname();
 
     if (pathname === "/login") return null;
 
     return (
         <div className={`h-screen bg-black text-white flex flex-col border-r border-gray-700 ${isCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 shadow-xl`}>            
-            <div className="flex items-center justify-between h-20 border-b border-gray-700 px-4">
-                {!isCollapsed && <h1 className="text-xl font-semibold">Mysite</h1>}
+            <div className="relative flex items-center justify-between h-20 border-b border-gray-700 px-4">
+                {!isCollapsed && <h1 className="text-xl font-bold">Calculate sugar</h1>}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
-                    className='text-white focus:outline-none mr-3'
+                    className='text-white focus:outline-none'
                 >
-                    {isCollapsed ? <AiOutlineMenu size={24} /> : <AiOutlineClose size={30} />}
+                    {isCollapsed ? (
+                        <RxHamburgerMenu size={24} className="text-xl absolute mx-2 mt-[-10px] text-white focus:outline-none" />
+                    ) : (
+                        <FiChevronLeft size={30} />
+                    )}
                 </button>
             </div>
 
-            <nav className='flex-1 flex flex-col items-center pt-6'>
+            <nav className='flex-1 flex flex-col items-start pt-6'>
                 {navElements.map(({ title, href, icon }) => (
                     <Link href={href} key={title} className='w-full'>
-                        <div className={`flex items-center justify-center py-4 px-6 rounded-md transition duration-300 hover:bg-gray-800 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
+                        <div className={`flex items-center justify-start py-4 px-6 rounded-md transition duration-300 hover:bg-gray-800 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
                             {icon}
                             {!isCollapsed && <span className='text-sm'>{title}</span>}
                         </div>
