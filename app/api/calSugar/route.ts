@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
-import { calSugar } from "@/app/actions";
+import { calHeartRate, calSugar } from "@/app/actions";
 
 export async function POST(req: Request) {
-  const { value } = await req.json();
-  const result = await calSugar(value);
-  return NextResponse.json({ result });
+  const { value1,age } = await req.json();
+  const resul = await calSugar(value1);
+  const hrt = await calHeartRate(age)
+  return NextResponse.json({ resul,hrt });
 }

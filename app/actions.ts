@@ -4,13 +4,13 @@ export async function calHeartRate(age:number){
     return 220-age;
 }
 
-export async function calSugar(value:number){
+export async function calSugar(blood_value:number){
     let sugarResult = ''
-    if(value<70 || value == 0){
+    if(blood_value<70 || blood_value == 0){
       sugarResult = 'คุณมีระดับน้ำตาลน้อยกว่าปกติ'
-  }else if(value>=70 && value<=100){
+  }else if(blood_value>=70 && blood_value<=100){
       sugarResult = 'ปกติ'
-  }else if(value>100 && value<=125){
+  }else if(blood_value>100 && blood_value<=125){
       sugarResult = 'มีความเสี่ยง'
   }else{
     sugarResult = 'มีความเสี่ยงสูง'

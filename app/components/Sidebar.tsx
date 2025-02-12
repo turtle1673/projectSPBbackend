@@ -55,7 +55,7 @@ const Sidebar = () => {
                 ))}
             </nav>
 
-            <div className='mb-10 px-4'>
+            <div className='mb-10 px-4'>           
                 <form action={logout}>
                     <button
                         type="submit"
