@@ -1,18 +1,27 @@
 "use client";
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { login, signup } from "./actions";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
-export default function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
-  const [email, setEmail] = useState("");  
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState([]);
-  const [confirmPasswordError, setConfirmPasswordError] = useState("");
+interface AuthPageState {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  error: string[];
+  confirmPasswordError: string;
+  isLogin: boolean;
+}
 
-  const validatePassword = (password) => {
-    const errors = [];
+export default function AuthPage() {
+  const [isLogin, setIsLogin] = useState<boolean>(true);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [error, setError] = useState<string[]>([]);
+  const [confirmPasswordError, setConfirmPasswordError] = useState<string>("");
+
+  const validatePassword = (password: string): string[] => {
+    const errors: string[] = [];
     if (!/(?=.*[a-z])/.test(password)) {
       errors.push("ต้องมีตัวอักษรพิมพ์เล็ก");
     }
@@ -31,7 +40,7 @@ export default function AuthPage() {
     return errors;
   };
 
-  const handlePasswordChange = (e) => {
+  const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const newPassword = e.target.value;
     setPassword(newPassword);
 
@@ -47,7 +56,7 @@ export default function AuthPage() {
     }
   };
 
-  const handleConfirmPasswordChange = (e) => {
+  const handleConfirmPasswordChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const newConfirmPassword = e.target.value;
     setConfirmPassword(newConfirmPassword);
 
@@ -58,7 +67,7 @@ export default function AuthPage() {
     }
   };
 
-  const handleFormSwitch = (formType) => {
+  const handleFormSwitch = (formType: boolean): void => {
     setIsLogin(formType);
     setEmail("");  // Clear email
     setPassword("");  // Clear password
@@ -69,41 +78,39 @@ export default function AuthPage() {
 
   return (
     <div className="flex justify-center items-center min-h-screen relative">
-     <div className=""></div>
-      <form className="relative  backdrop-blur-2xl border border-white/30 shadow-2xl rounded-3xl p-8 w-96 transition transform hover:scale-105 hover:shadow-purple-500">
+      <div className=""></div>
+      <form className="relative backdrop-blur-2xl border border-white/30 shadow-2xl rounded-3xl p-8 w-96 transition transform hover:scale-105 hover:shadow-purple-500">
         <h2 className="text-3xl font-extrabold text-center text-white mb-6 tracking-wide">
           {isLogin ? "เข้าสู่ระบบ" : "สมัครสมาชิก"}
         </h2>
 
         <div className="">
-  <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
-    <button
-      type="button"
-      onClick={() => handleFormSwitch(true)}
-      className={`flex-1 py-3 text-lg font-bold transition-all ${
-        isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
-      }`}
-    >
-      Login
-    </button>
-  </div>
+          <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
+            <button
+              type="button"
+              onClick={() => handleFormSwitch(true)}
+              className={`flex-1 py-3 text-lg font-bold transition-all ${
+                isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
+              }`}
+            >
+              Login
+            </button>
+          </div>
 
-  <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
-    <button
-      type="button"
-      onClick={() => handleFormSwitch(false)}
-      className={`flex-1 py-3 text-lg font-bold transition-all ${
-        !isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
-      }`}
-    >
-      Signup
-    </button>
-  </div>
-</div>
-
+          <div className="flex mb-6 border border-white/40 rounded-lg overflow-hidden">
+            <button
+              type="button"
+              onClick={() => handleFormSwitch(false)}
+              className={`flex-1 py-3 text-lg font-bold transition-all ${
+                !isLogin ? "bg-white text-purple-700 shadow-md" : "bg-transparent text-white"
+              }`}
+            >
+              Signup
+            </button>
+          </div>
+        </div>
 
         <div className="mb-4 relative">
-        
           <label htmlFor="email" className="text-white font-bold">
             Email Address:
             <FaEnvelope className="absolute left-4 mt-4 text-gray-300 text-lg" />
@@ -120,7 +127,6 @@ export default function AuthPage() {
         </div>
 
         <div className="mb-4 relative">
-        
           <label htmlFor="password" className="text-white font-bold">
             Password:
             <FaLock className="absolute left-4 mt-4 text-gray-300 text-lg" />
@@ -154,14 +160,10 @@ export default function AuthPage() {
               id="confirm-password"
               name="confirm-password"
               type="password"
-              
               value={confirmPassword}
               onChange={handleConfirmPasswordChange}
-              
               required
-              
               className="w-full px-4 pl-12 py-3 border border-white/50 bg-white/10 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400" 
-              
             />
             {confirmPasswordError && (
               <p className="text-red-400 text-sm mt-1">{confirmPasswordError}</p>

@@ -28,7 +28,7 @@ export default function SugarlevelsForm() {
 
     return (
         <section className="flex items-center justify-center min-h-screen px-4 sm:px-8 md:px-16 lg:px-32">
-            <div className="bg-gray-300/20 text-black text-center w-full sm:w-[600px] md:w-[700px] lg:w-[800px] h-auto rounded-lg shadow-lg flex border-2 border-white">
+            <div className="bg-gray-300/20 text-black text-center sm:w-[600px] md:w-[700px] lg:w-[800px] h-auto rounded-lg shadow-lg flex border-2 border-white">
                 {/* กล่องซ้าย */}
                 <div className="flex-1 flex justify-center items-center">
                     <div className="flex flex-col gap-3 w-[80%]">
@@ -56,7 +56,7 @@ export default function SugarlevelsForm() {
                     <div className="flex flex-col gap-10 w-[95%]">
                         <div className="flex flex-col">    
                             <div className="text-white text-sm sm:text-base md:text-lg lg:text-xl font-bold mr-[250px]">NOTE</div>
-                            <div className="border-2 border-white rounded-lg h-[200px] p-2 flex items-start overflow-y-auto">
+                            <div className="border-2 border-white rounded-lg h-[200px] p-2 flex items-start overflow-y-auto w-full">
                                 <div className="text-white font-bold text-left whitespace-pre-line w-full">
                                     {note}
                                 </div>

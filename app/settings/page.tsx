@@ -1,7 +1,10 @@
-export default function Settings() {
-    return (
-      <main className="flex min-h-screen flex-col items-center justify-center p-8 bg-gray-800 text-gray-100">
-        <header>Settings</header>
-      </main>
-    );
-  }
+import React from 'react'
+import SettingForm from '../components/SettingForm'
+
+export default async function Setting() {
+  return (
+    <>
+    <SettingForm />
+    </>
+  )
+}
