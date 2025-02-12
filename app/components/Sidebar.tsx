@@ -10,12 +10,16 @@ import { MdBloodtype } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
 import { AiFillHome } from "react-icons/ai";
 import { FiChevronLeft } from "react-icons/fi";
+import { IoSettingsSharp } from "react-icons/io5";
+
 
 
 const navElements = [
     { title: 'หน้าหลัก', href: '/', icon: <AiFillHome className='w-6 h-6' /> },
     { title: 'โปรไฟล์', href: '/profile', icon: <FaUser className='w-6 h-6' /> },
     { title: 'วัดระดับน้ำตาล', href: '/sugarlevels', icon: <MdBloodtype className='w-6 h-6' /> },
+    { title: 'ตั้งค่า', href: '/settings', icon: <IoSettingsSharp className='w-6 h-6' /> },
+    { title: 'วัดระดับน้ำตาล2', href: '/sugarcalculator', icon: <MdBloodtype className='w-6 h-6' /> },
 ];
 
 const Sidebar = () => {
