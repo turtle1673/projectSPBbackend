@@ -4,14 +4,35 @@ interface BloodCartProps {
   bloodsu: {
     blood_value: string;
     blood_result: string;
+    heart_rate:number
+    created_at:Date
   };
 }
+const formatDateThai = (dateString: string | Date) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("th-TH", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+};
 
 export default function BloodCart({ bloodsu }: BloodCartProps) {
   return (
-    <div className="flex flex-col text-white bg-red-500 border-2 border-green-500 gap-4 justify-center p-4">
-      <div>ระดับน้ำตาล: {bloodsu.blood_value}</div>
-      <div>ผลการประเมิน: {bloodsu.blood_result}</div>
+    <div className="col-span-1 text-white bg-stone-500 border-2 border-green-500 rounded-xl">
+      
+      <div className="flex flex-col gap-4 m-2 h-max">
+      <p>{bloodsu.created_at ? formatDateThai(bloodsu.created_at) : "N/A"}</p>
+      <div className="flex gap-6">
+        <div>ระดับน้ำตาล: {bloodsu.blood_value}</div>
+        <div>อัตราการเต้นของหัวใจ: {bloodsu.heart_rate}</div>
+      </div>
+      <div className="text-xl">ผลการประเมิน: {bloodsu.blood_result}</div>
+      <div className="flex justify-end">
+        <button className="bg-blue-500 py-1 px-3 rounded-sm">edit</button>
+      </div>
+      </div>
+      
     </div>
   );
 }
