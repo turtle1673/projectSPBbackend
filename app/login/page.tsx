@@ -188,7 +188,7 @@ export default function AuthPage() {
 
         {isLogin && (
           <p className="text-center mt-4 text-white text-sm">
-            Not a member?{" "}
+            Not a member? {" "}
             <span
               onClick={() => handleFormSwitch(false)}
               className="text-blue-300 cursor-pointer hover:underline"
