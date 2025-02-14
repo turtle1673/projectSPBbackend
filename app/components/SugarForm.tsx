@@ -7,15 +7,13 @@ import { useRouter } from 'next/navigation'
 
 interface calSugarInterface { //ลองใช้ interface
     resul:string
-    hr:number
 }
 
 export default function SugarForm() {
     const [blood,setBlood] = useState('')
     const [result,setResult] = useState('')
     const [errorform,setErrorform] = useState('')
-    const [heartrate,setHeartrate] = useState<number | null>(null)
-    // const [userage,setUserage] = useState<number | null>(null)
+
     const router = useRouter()
 
     const supabase = createClient()
@@ -49,21 +47,30 @@ export default function SugarForm() {
 
     const savehandler = async (e:any) => {
       e.preventDefault()
-      const { data, error } = await supabase
-      .from('blood_sugar')
-      .insert([
-        { blood_value: blood, blood_result: result},
-      ])
-      .select()
-        
-      if(error){
-        console.log('Some error happend ', error)
+
+      const {data:userAuthData,error:userAuthError} = await supabase.auth.getUser()
+      if(userAuthError){
+        console.log("error in get user data from auth.")
       }
+      if(userAuthData){
+       console.log(userAuthData.user?.id)
+      }
+
+
+      // const { data, error } = await supabase
+      // .from('blood_sugar')
+      // .insert([
+      //   { blood_value: blood, blood_result: result},
+      // ])
+      // .select()
+        
+      // if(error){
+      //   console.log('Some error happend ', error)
+      // }
       setResult('')
       setBlood('')
-      setHeartrate(null)
 
-      router.push('/')
+      // router.push('/')
     }
 
   return (

@@ -173,8 +173,9 @@ export default function AuthPage() {
 
         <button
           formAction={isLogin ? login : signup}
+          
           disabled={
-            (isLogin && error.length > 0) || confirmPasswordError || (!isLogin && password !== confirmPassword)
+            (isLogin && error.length > 0) || !!confirmPasswordError || (!isLogin && password !== confirmPassword)
           }
           className={`w-full py-3 rounded-lg font-bold text-white text-lg transition-all duration-300 ${
             (isLogin && error.length > 0) || confirmPasswordError || (!isLogin && password !== confirmPassword)

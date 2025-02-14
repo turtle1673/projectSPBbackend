@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import SugarForm from "./components/SugarForm";
 import { createClient } from "@/utils/supabase/client";
-import BloodCart from "./components/BloodCart";
+import BloodCart from "./components/BloodCard";
 
 export default function Settings() {
     const [bloodsugars,setBloodsugars] = useState<any[]>([])
