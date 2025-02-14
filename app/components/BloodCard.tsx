@@ -1,9 +1,11 @@
+import Link from "next/link";
 import React from "react";
 
 interface BloodCartProps {
   bloodsu: {
-    blood_value: string;
-    blood_result: string;
+    id:number
+    blood_value: string
+    blood_result: string
     heart_rate:number
     created_at:Date
   };
@@ -29,7 +31,7 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
       </div>
       <div className="text-xl">ผลการประเมิน: {bloodsu.blood_result}</div>
       <div className="flex justify-end">
-        <button className="bg-blue-500 py-1 px-3 rounded-sm">edit</button>
+        <Link href={`/allresults/${bloodsu.id}`} className="bg-blue-500 py-1 px-3 rounded-sm">edit</Link>
       </div>
       </div>
       
