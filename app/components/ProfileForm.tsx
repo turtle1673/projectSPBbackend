@@ -28,7 +28,7 @@ export default function Profile() {
       const { data, error } = await supabase
         .from("users")
         .select("email, created_at, role")
-        .eq("id", user.id) // ใช้ user ID จากเซสชั่น
+        .eq("id", user.id)
         .limit(1);
 
       if (error) {
