@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/client";
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -26,7 +28,7 @@ export default function Profile() {
       const { data, error } = await supabase
         .from("users")
         .select("email, created_at, role")
-        .eq("id", user.id) // ใช้ user ID จากเซสชั่น
+        .eq("id", user.id)
         .limit(1);
 
       if (error) {
@@ -53,7 +55,7 @@ export default function Profile() {
         return;
       }
 
-      setUser(data[0]);
+      setUser(user);
       setLoading(false);
     };
 
