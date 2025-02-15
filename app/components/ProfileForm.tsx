@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { User } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/client";
 
 export default function Profile() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState<User | null>(null);
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ export default function Profile() {
         return;
       }
 
-      setUser(data[0]);
+      setUser(user);
       setLoading(false);
     };
 
