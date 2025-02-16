@@ -24,9 +24,8 @@
 //เผื่อแก้โค้ดเก่านี้เปลี่ยนชื่อไฟล์ จาก middlewave.ts เป็น js
 
 import { updateSession } from '@/utils/supabase/middleware'
-import { NextRequest, NextResponse } from 'next/server'
 
-export async function middleware(request: NextRequest): Promise<NextResponse> {
+export async function middleware(request) {
   return await updateSession(request)
 }
 

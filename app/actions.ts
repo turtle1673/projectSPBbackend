@@ -1,12 +1,16 @@
 "use server"
 
-export async function calSugar(blood_parameter:number){
+export async function calHeartRate(age:number){
+    return 220-age;
+}
+
+export async function calSugar(blood_value:number){
     let sugarResult = ''
-    if(blood_parameter<70 || blood_parameter == 0){
+    if(blood_value<70 || blood_value == 0){
       sugarResult = 'คุณมีระดับน้ำตาลน้อยกว่าปกติ'
-  }else if(blood_parameter>=70 && blood_parameter<=100){
+  }else if(blood_value>=70 && blood_value<=100){
       sugarResult = 'ปกติ'
-  }else if(blood_parameter>100 && blood_parameter<=125){
+  }else if(blood_value>100 && blood_value<=125){
       sugarResult = 'มีความเสี่ยง'
   }else{
     sugarResult = 'มีความเสี่ยงสูง'
