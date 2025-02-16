@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import SugarForm from "./components/SugarForm";
 import { createClient } from "@/utils/supabase/client";
 import BloodCart from "./components/BloodCard";
 
@@ -23,13 +22,13 @@ export default function Settings() {
                  setBloodsugars(data)
              }
          }
- 
          fetchBloodsugars()
      },[])
- 
+
+     if(bloodsugars.length > 0 ) {
    return (
      <>
-     hello
+     <div className="bg-pink-500 h-screen">
      {bloodsugars && (
          <div className='grid grid-cols-3 gap-6 p-4'>
              {bloodsugars.map(e => (
@@ -37,6 +36,13 @@ export default function Settings() {
              ))}
          </div>
      )}
+     </div>
      </>
-   )
+   )}else{
+       return (
+           <div className='bg-teal-500 flex justify-center items-center h-screen'>
+               <h1 className='text-2xl'>ไม่มีข้อมูล</h1>
+           </div>
+       )
+   }
 }

@@ -7,10 +7,10 @@ interface BloodCartProps {
     blood_value: string
     blood_result: string
     heart_rate:number
-    created_at:Date
+    created_at:string
   };
 }
-const formatDateThai = (dateString: string | Date) => {
+const formatDateThai = (dateString: string) => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("th-TH", {
     day: "numeric",
