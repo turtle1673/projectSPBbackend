@@ -1,9 +1,5 @@
 "use server"
 
-export async function calHeartRate(age:number){
-    return 220-age;
-}
-
 export async function calSugar(blood_value:number){
     let sugarResult = ''
     if(blood_value<70 || blood_value == 0){

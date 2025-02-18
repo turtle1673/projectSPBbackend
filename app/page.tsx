@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import SugarForm from "./components/SugarForm";
 import { createClient } from "@/utils/supabase/client";
 import BloodCart from "./components/BloodCard";
 
@@ -14,6 +13,7 @@ export default function Settings() {
              let { data, error } = await supabase
              .from('blood_sugar')
              .select('*')
+             .order('created_at', {ascending: false})
  
              if(error){
                  console.log(error)
@@ -29,7 +29,7 @@ export default function Settings() {
  
    return (
      <>
-     hello
+     <div className="bg-lime-100 p-4 h-screen">
      {bloodsugars && (
          <div className='grid grid-cols-3 gap-6 p-4'>
              {bloodsugars.map(e => (
@@ -37,6 +37,7 @@ export default function Settings() {
              ))}
          </div>
      )}
+     </div>
      </>
    )
 }

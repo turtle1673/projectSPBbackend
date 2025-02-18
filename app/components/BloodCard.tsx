@@ -1,15 +1,17 @@
 import Link from "next/link";
-import React from "react";
+import React, { useRef } from "react";
+import { createClient } from '@/utils/supabase/client';
 
 interface BloodCartProps {
   bloodsu: {
-    id:number
-    blood_value: string
-    blood_result: string
-    heart_rate:number
-    created_at:Date
+    id: number;
+    blood_value: string;
+    blood_result: string;
+    heart_rate: number;
+    created_at: Date;
   };
 }
+
 const formatDateThai = (dateString: string | Date) => {
   const date = new Date(dateString);
   return new Intl.DateTimeFormat("th-TH", {
@@ -19,22 +21,50 @@ const formatDateThai = (dateString: string | Date) => {
   }).format(date);
 };
 
+
+
 export default function BloodCart({ bloodsu }: BloodCartProps) {
+  const supabase = createClient();
+  const ref = useRef<HTMLButtonElement>(null);
+  const handleDelete = async () => {
+    const { error } = await supabase
+      .from('blood_sugar')
+      .delete()
+      .eq('id', bloodsu.id);
+
+    if (error) {
+      console.error('Error deleting record:', error);
+    } else {
+      alert('Record deleted successfully');
+    }
+  };
+
   return (
-    <div className="col-span-1 text-white bg-stone-500 border-2 border-green-500 rounded-xl">
-      
-      <div className="flex flex-col gap-4 m-2 h-max">
-      <p>{bloodsu.created_at ? formatDateThai(bloodsu.created_at) : "N/A"}</p>
-      <div className="flex gap-6">
-        <div>ระดับน้ำตาล: {bloodsu.blood_value}</div>
-        <div>อัตราการเต้นของหัวใจ: {bloodsu.heart_rate}</div>
+    <div className="col-span-1 bg-yellow-100 border-2 border-yellow-400 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+      <div className="flex flex-col gap-4 m-4 h-full">
+        <p className="text-gray-600 font-medium">{bloodsu.created_at ? formatDateThai(bloodsu.created_at) : "N/A"}</p>
+        <div className="flex flex-col gap-2">
+          <div className="text-lg font-semibold text-yellow-700">ระดับน้ำตาล: {bloodsu.blood_value} mg/dL</div>
+          <div className="text-xl font-bold text-yellow-800">ผลการประเมิน: {bloodsu.blood_result}</div>
+        </div>
+        <div className="flex justify-end mt-auto gap-2">
+          <Link
+            href={`/allresults/${bloodsu.id}`}
+            className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors duration-300"
+          >
+            แก้ไข
+          </Link>
+          <button
+            ref={ref}
+            onClick={async (formData) => {
+              await handleDelete();
+            }}
+            className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300"
+          >
+            ลบ
+          </button>
+        </div>
       </div>
-      <div className="text-xl">ผลการประเมิน: {bloodsu.blood_result}</div>
-      <div className="flex justify-end">
-        <Link href={`/allresults/${bloodsu.id}`} className="bg-blue-500 py-1 px-3 rounded-sm">edit</Link>
-      </div>
-      </div>
-      
     </div>
   );
 }
