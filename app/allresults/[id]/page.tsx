@@ -3,10 +3,13 @@ import { createClient } from '@/utils/supabase/client'
 import { useParams, useRouter } from 'next/navigation'
 import React from 'react'
 import { useState, useEffect } from 'react'
+import { useFormState, useFormStatus } from 'react-dom'
 
 export default function EditBloodData() {
   const params = useParams()
   const { id } = params
+  const router = useRouter()
+  const update_status = useFormStatus()
   const supabase = createClient()
   const [bloodValue, setBloodValue] = useState('')
   const [potd, setPotd] = useState('')
@@ -62,7 +65,7 @@ export default function EditBloodData() {
     if (error) {
       console.error(error)
     } else {
-      alert('Data updated successfully')
+      router.push('/')
     }
   }
 

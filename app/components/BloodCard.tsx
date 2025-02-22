@@ -26,6 +26,7 @@ const formatDateThai = (dateString: string | Date) => {
 export default function BloodCart({ bloodsu }: BloodCartProps) {
   const supabase = createClient();
   const ref = useRef<HTMLButtonElement>(null);
+
   const handleDelete = async () => {
     const { error } = await supabase
       .from('blood_sugar')
@@ -35,7 +36,7 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
     if (error) {
       console.error('Error deleting record:', error);
     } else {
-      alert('Record deleted successfully');
+      window.location.reload();
     }
   };
 
@@ -47,7 +48,7 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
           <div className="text-lg font-semibold text-yellow-700">ระดับน้ำตาล: {bloodsu.blood_value} mg/dL</div>
           <div className="text-xl font-bold text-yellow-800">ผลการประเมิน: {bloodsu.blood_result}</div>
         </div>
-        <div className="flex justify-end mt-auto gap-2">
+        <div className="flex justify-end gap-2">
           <Link
             href={`/allresults/${bloodsu.id}`}
             className="bg-yellow-500 text-white py-2 px-4 rounded-md hover:bg-yellow-600 transition-colors duration-300"
@@ -56,7 +57,7 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
           </Link>
           <button
             ref={ref}
-            onClick={async (formData) => {
+            onClick={async () => {
               await handleDelete();
             }}
             className="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300"
