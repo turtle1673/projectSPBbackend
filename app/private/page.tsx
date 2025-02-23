@@ -1,27 +1,38 @@
-import { redirect } from 'next/navigation'
+import { redirect } from "next/navigation";
 
-import { createClient } from '@/utils/supabase/server'
+import { createClient } from "@/utils/supabase/server";
 
 export default async function PrivatePage() {
-  const supabase = await createClient()
+  const supabase = await createClient();
 
-  const { data, error } = await supabase.auth.getUser()
+  const { data, error } = await supabase.auth.getUser();
   if (error || !data?.user) {
-    redirect('/login')
+    redirect("/login");
+  }
+
+  const { data: userRole, error: userError } = await supabase
+    .from("users")
+    .select("role")
+    .eq("id", data.user.id)
+    .single();
+
+  if (userError || !userRole) {
+    redirect("/error");
+  }
+  if (userRole.role !== "admin") {
+    console.log(userRole);
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-red-500 text-3xl bg-slate-800 p-6 rounded-md">
+          Sorry, you are not authorized to view this page
+        </p>
+      </div>
+    )
   }
 
   return (
     <>
-      <p className='text-white'>Hello {data.user.email}</p>
-      <form action="/action_page.php">
-        <label htmlFor="cars">Choose a car:</label>
-        <select id="cars" name="cars">
-          <option value="volvo">Volvo XC90</option>
-          <option value="saab">Saab 95</option>
-          <option value="mercedes">Mercedes SLK</option>
-          <option value="audi">Audi TT</option>
-        </select>
-      </form>
+      <h1>Admin role only</h1>
     </>
-  )
+  );
 }

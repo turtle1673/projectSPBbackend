@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { createClient } from '@/utils/supabase/client';
 
 interface BloodCartProps {
@@ -23,7 +23,6 @@ const formatDateThai = (dateString: string | Date) => {
 
 export default function BloodCart({ bloodsu }: BloodCartProps) {
   const supabase = createClient();
-  const ref = useRef<HTMLButtonElement>(null);
   const [note, setNote] = useState("");
 
   useEffect(() => {
@@ -68,7 +67,6 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
             แก้ไข
           </Link>
           <button
-            ref={ref}
             onClick={async () => {
               await handleDelete();
             }}
