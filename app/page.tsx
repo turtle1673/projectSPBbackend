@@ -29,7 +29,7 @@ export default function Settings() {
 
     return (
         <>
-            <div className="bg-lime-100 p-4 h-screen">
+            <div className=" p-4 h-screen">
                 {bloodsugars.length > 0 ?
                     //yes
                     <div className='grid grid-cols-3 gap-6 p-4'>

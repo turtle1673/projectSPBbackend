@@ -24,7 +24,7 @@ export default function RootLayout({children}:LayoutProps ) {
       <body className={`${inter.className} flex`}>
         <Sidebar />
         <div className="flex-grow "style={{ 
-                backgroundImage: "url('https://i.pinimg.com/originals/0e/0d/72/0e0d72395ecbc6682ea8e7276bc6fe06.gif')", 
+                backgroundImage: "url('https://i.pinimg.com/736x/ab/52/03/ab5203ae7914f0798884bdfcf3b97b05.jpg')", 
                 backgroundSize: 'contain',  // Ensures the image fits without distortion
                 backgroundPosition: 'center', 
                 backgroundAttachment: 'fixed',  // Keeps the image fixed when scrolling

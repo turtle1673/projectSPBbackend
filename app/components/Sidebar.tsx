@@ -17,9 +17,8 @@ import { IoSettingsSharp } from "react-icons/io5";
 const navElements = [
     { title: 'หน้าหลัก', href: '/', icon: <AiFillHome className='w-6 h-6' /> },
     { title: 'โปรไฟล์', href: '/profile', icon: <FaUser className='w-6 h-6' /> },
-    { title: 'วัดระดับน้ำตาล', href: '/sugarlevels', icon: <MdBloodtype className='w-6 h-6' /> },
+    { title: 'วัดระดับน้ำตาล', href: '/sugarcalculator', icon: <MdBloodtype className='w-6 h-6' /> },
     { title: 'ตั้งค่า', href: '/settings', icon: <IoSettingsSharp className='w-6 h-6' /> },
-    { title: 'วัดระดับน้ำตาล2', href: '/sugarcalculator', icon: <MdBloodtype className='w-6 h-6' /> },
 ];
 
 const Sidebar = () => {
@@ -29,9 +28,9 @@ const Sidebar = () => {
     if (pathname === "/login") return null;
 
     return (
-        <div className={`h-screen bg-black text-white flex flex-col border-r border-gray-700 ${isCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 shadow-xl`}>            
-            <div className="relative flex items-center justify-between h-20 border-b border-gray-700 px-4">
-                {!isCollapsed && <h1 className="text-xl font-bold">Calculate sugar</h1>}
+        <div className={`h-screen bg-amber-500  text-white flex flex-col  ${isCollapsed ? 'w-20' : 'w-64'} transition-all duration-300 shadow-xl`}>            
+            <div className="relative flex items-center justify-between h-20  px-4">
+                {!isCollapsed && <h1 className="text-xl font-bold">คำนวณน้ำตาล</h1>}
                 <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
                     className='text-white focus:outline-none'
@@ -62,7 +61,7 @@ const Sidebar = () => {
                         className="flex items-center justify-center py-3 w-full rounded-md transition duration-300 bg-red-600 hover:bg-red-700"
                     >
                         <TbLogout2 className='w-6 h-6' />
-                        {!isCollapsed && <span className='ml-3 text-bold'>Logout</span>}
+                        {!isCollapsed && <span className='ml-3 text-bold'>ออกจากระบบ</span>}
                     </button>
                 </form>
             </div>

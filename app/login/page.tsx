@@ -79,7 +79,7 @@ export default function AuthPage() {
   return (
     <div className="flex justify-center items-center min-h-screen relative">
       <div className=""></div>
-      <form className="relative backdrop-blur-2xl border border-white/30 shadow-2xl rounded-3xl p-8 w-96 transition transform hover:scale-105 hover:shadow-purple-500">
+      <form className="bg-black relative backdrop-blur-2xl border border-white/30 shadow-2xl rounded-3xl p-8 w-96 transition transform hover:scale-105 hover:shadow-purple-500">
         <h2 className="text-3xl font-extrabold text-center text-white mb-6 tracking-wide">
           {isLogin ? "เข้าสู่ระบบ" : "สมัครสมาชิก"}
         </h2>
