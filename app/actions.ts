@@ -13,9 +13,9 @@ export async function calSugar(blood_value: number) {
     } else if (blood_value >= 70 && blood_value <= 100) {
         blood_result = 'ระดับปกติ';
     } else if (blood_value > 100 && blood_value <= 125) {
-        blood_result = 'เสี่ยงเบาหวาน';
+        blood_result = 'ภาวะเสี่ยงเบาหวาน';
     } else {
-        blood_result = 'ความเสี่ยงสูง';
+        blood_result = 'มีความเสี่ยงสูง';
     } 
 
     return blood_result;
