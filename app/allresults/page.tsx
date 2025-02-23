@@ -2,7 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client'
 import React, { useEffect, useState } from 'react'
-import BloodCart from '../components/BloodCart'
+import BloodCart from '../components/BloodCard'
 
 function page() {
     const [bloodsugars,setBloodsugars] = useState<any[]>([])
