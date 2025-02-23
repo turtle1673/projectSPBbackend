@@ -1,11 +1,11 @@
 import Link from "next/link";
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { createClient } from '@/utils/supabase/client';
 
 interface BloodCartProps {
   bloodsu: {
     id: number;
-    blood_value: string;
+    blood_value: number;
     blood_result: string;
     heart_rate: number;
     created_at: Date;
@@ -21,11 +21,22 @@ const formatDateThai = (dateString: string | Date) => {
   }).format(date);
 };
 
-
-
 export default function BloodCart({ bloodsu }: BloodCartProps) {
   const supabase = createClient();
   const ref = useRef<HTMLButtonElement>(null);
+  const [note, setNote] = useState("");
+
+  useEffect(() => {
+    if (bloodsu.blood_value <= 69) {
+      setNote('⚠ คุณอยู่ในภาวะน้ำตาลต่ำ\n\n👉 กินอาหารที่มีคาร์โบไฮเดรต เช่น ขนมปัง หรือ แครกเกอร์');
+    } else if (bloodsu.blood_value >= 70 && bloodsu.blood_value <= 100) {
+      setNote('✅ คุณอยู่ในระดับปกติ\n\n💡 ควรรับประทานอาหารที่มีประโยชน์และออกกำลังกาย');
+    } else if (bloodsu.blood_value > 100 && bloodsu.blood_value <= 125) {
+      setNote('⚠ คุณมีภาวะเสี่ยงเบาหวาน\n\n💡 ลดของหวาน ออกกำลังกาย และตรวจน้ำตาลเป็นระยะ');
+    } else {
+      setNote('❗ คุณมีความเสี่ยงเป็นเบาหวาน\n\n🚑 ควรพบแพทย์และปรับพฤติกรรมการกิน');
+    }
+  }, [bloodsu.blood_value]);
 
   const handleDelete = async () => {
     const { error } = await supabase
@@ -47,6 +58,7 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
         <div className="flex flex-col gap-2">
           <div className="text-lg font-semibold text-yellow-700">ระดับน้ำตาล: {bloodsu.blood_value} mg/dL</div>
           <div className="text-xl font-bold text-yellow-800">ผลการประเมิน: {bloodsu.blood_result}</div>
+          <div className="text-2xl font-extrabold text-yellow-900">คำแนะนำ: {note}</div>
         </div>
         <div className="flex justify-end gap-2">
           <Link
