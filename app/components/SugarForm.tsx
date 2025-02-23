@@ -79,7 +79,7 @@ export default function SugarForm() {
   return (
     <div className="min-h-screen ">
       <div className="flex flex-col justify-center items-center gap-16 w-full">
-        <div className="h-[15vh] w-full bg-amber-400 text-center flex items-center justify-center">
+        <div className="mt-5 rounded-lg h-[10vh] w-[50%] bg-amber-400 text-center flex items-center justify-center">
           <p className="text-5xl font-sans font-bold text-white">Blood Sugar Calculator</p>
         </div>
         <div className="w-2/3 border-2 border-amber-200 rounded-lg p-12 flex flex-col gap-12 drop-shadow-xl bg-pink-100 bg-opacity-80">
