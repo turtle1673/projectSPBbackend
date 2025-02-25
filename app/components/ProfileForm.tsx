@@ -4,10 +4,19 @@ import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { createClient } from "@/utils/supabase/client";
 
+const formatDateThai = (dateString: string | Date) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat("th-TH", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(date);
+}
+
 export default function Profile() {
   const [user, setUser] = useState<User | null>(null);
-  
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -60,7 +69,7 @@ export default function Profile() {
     };
 
     fetchUser();
-  }, []);
+  }, [])
 
   if (loading) {
     return <div className="text-white text-center">Loading...</div>;
@@ -72,7 +81,8 @@ export default function Profile() {
         {user ? (
           <>
             <h2 className="text-xl font-semibold">{user.email}</h2>
-            <p className="text-gray-400">{user.role}</p>
+            
+            <p className="text-gray-400">สมัครสมาชิกเมื่อ : {user.created_at? formatDateThai(user.created_at) : "N/A" }</p>
           </>
         ) : (
           <p className="text-red-500">User not found</p>

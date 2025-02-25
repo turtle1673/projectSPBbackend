@@ -29,9 +29,30 @@ export default async function PrivatePage() {
       </div>
     )
   }
+
+  const { data: allUser, error: allUserError } = await supabase
+    .from("users")
+    .select("*");
+    
+
+  if(allUserError){
+    console.log(allUserError)
+  }
+  if(allUser){
+    console.log(allUser)
+  }
   return (
     <>
-      <h1>Admin role only</h1>
+    <div className="flex flex-col items-center gap-6">
+      <h1 className="text-center text-fuchsia-600 text-5xl">Admin role only</h1>
+      <ul>
+      {allUser?.map((user) => (
+          <li key={user.id}>
+            {user.email} - {user.role}
+          </li>
+        ))}
+      </ul>
+      </div>
     </>
   );
 }

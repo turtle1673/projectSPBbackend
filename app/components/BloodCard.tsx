@@ -19,7 +19,7 @@ const formatDateThai = (dateString: string | Date) => {
     month: "long",
     year: "numeric",
   }).format(date);
-};
+}
 
 export default function BloodCart({ bloodsu }: BloodCartProps) {
   const supabase = createClient();
