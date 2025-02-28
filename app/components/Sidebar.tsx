@@ -8,7 +8,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { MdBloodtype } from "react-icons/md";
 import { FaUser } from "react-icons/fa6";
-import { AiFillHome } from "react-icons/ai";
+import { AiFillHome, AiOutlineBarChart } from "react-icons/ai";
 import { FiChevronLeft } from "react-icons/fi";
 import { IoSettingsSharp } from "react-icons/io5";
 
@@ -18,6 +18,7 @@ const navElements = [
     { title: 'หน้าหลัก', href: '/', icon: <AiFillHome className='w-6 h-6' /> },
     { title: 'โปรไฟล์', href: '/profile', icon: <FaUser className='w-6 h-6' /> },
     { title: 'วัดระดับน้ำตาล', href: '/sugarcalculator', icon: <MdBloodtype className='w-6 h-6' /> },
+    { title: 'สถิติ', href: '/statistic', icon: <AiOutlineBarChart className='w-6 h-6' /> },
     { title: 'ตั้งค่า', href: '/settings', icon: <IoSettingsSharp className='w-6 h-6' /> },
 ];
 

@@ -1,9 +1,5 @@
 "use server"
 
-export async function calHeartRate(age:number){
-    return 220-age;
-}
-
 export async function calSugar(blood_value: number) {
     let blood_result = '';
 
@@ -20,3 +16,23 @@ export async function calSugar(blood_value: number) {
 
     return blood_result;
 }
+
+
+
+export async function calAvg(arr: number[]) : Promise<number>{
+    let sum = 0
+    arr.forEach((e) => {
+        sum += e
+    })
+    return parseFloat((sum / arr.length).toFixed(2))
+}
+
+type dateOption = 'short' | 'long'
+export const formatDateThai = async (dateString: string | Date, option:dateOption) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("th-TH", {
+      day: "numeric",
+      month: option,
+      year: "numeric",
+    }).format(date);
+  };

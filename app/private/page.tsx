@@ -1,5 +1,7 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
+import Link from 'next/link';
+import { formatDateThai } from "../actions";
 
 export default async function PrivatePage() {
   const supabase = await createClient();
@@ -26,12 +28,16 @@ export default async function PrivatePage() {
         <p className="text-red-500 text-3xl bg-slate-800 p-6 rounded-md">
           Sorry, you are not authorized to view this page
         </p>
+        <Link href={'/'}>back to home page</Link>
       </div>
     )
   }
+
+  const aaa = '2025-02-22 16:30:26.219873+00'
   return (
     <>
       <h1>Admin role only</h1>
+      <div>{formatDateThai(aaa,"long")}</div>
     </>
   );
 }
