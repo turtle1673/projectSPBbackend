@@ -44,7 +44,7 @@ export default function Page() {
     let { data, error } = await supabase
       .from('blood_sugar')
       .select('*')
-      .order('id', { ascending: false })
+      .order('created_at', { ascending: false })
       .limit(limit)
 
     if (error) {
@@ -52,7 +52,7 @@ export default function Page() {
       setBloodsugars([])
     }
     if (data) {
-      setBloodsugars(data)
+      setBloodsugars(data.reverse())
       const bloodValues = data.map((e: IBloodSugar) => Number(e.blood_value))
       setAverage(await calAvg(bloodValues))
       setMinblood(Math.min(...bloodValues))
@@ -65,11 +65,11 @@ export default function Page() {
   }, [limit])
 
   const data = {
-    labels: bloodsugars.reverse().map((e) => new Date(e.created_at).toLocaleDateString()),
+    labels: bloodsugars.map((e) => new Date(e.created_at).toLocaleDateString()),
     datasets: [
       {
         label: 'Blood Sugar Level',
-        data: bloodsugars.reverse().map((sugar) => sugar.blood_value),
+        data: bloodsugars.map((sugar) => sugar.blood_value),
         borderColor: 'rgba(255, 99, 132, 1)',
         backgroundColor: 'rgba(255, 159, 64, 0.2)',
         fill: true,
@@ -105,8 +105,10 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center bg-white p-4 h-screen mali-bold-italic">
       <div className="flex w-full h-[75vh] gap-6 border-4 items-center justify-around border-amber-500 rounded-xl bg-amber-100 p-4">
-        <Line data={data} options={options} />
-        <div className='flex flex-col bg-[#B1C29E] rounded-lg gap-4 w-full h-full p-4'>
+        <div className='w-4/6'>
+        <Line className='w-full h-full' data={data} options={options} />
+        </div>
+        <div className='flex flex-col bg-[#B1C29E] rounded-lg gap-4 w-2/6 h-full p-4'>
           <div className='flex flex-col gap-2'>
             <p className='text-xl'>แถวทั้งหมด</p>
             <p className='text-center bg-[#659287] rounded-lg py-4 text-orange-100 text-lg'>{bloodsugars.length}</p>
@@ -140,7 +142,7 @@ export default function Page() {
           onChange={(e) => setLimit(Number(e.target.value))}
           className="p-4 outline-2 outline-offset-2 outline-amber-600 border-2 border-amber-500 rounded-lg bg-yellow-300 hover:bg-yellow-400 transition-colors duration-300 cursor-pointer"
         >
-          <option value="30">default 30 rows</option>
+          <option value="30">30 rows</option>
           <option value="3">3 rows</option>
           <option value="7">7 rows</option>
           <option value="14">14 rows</option>

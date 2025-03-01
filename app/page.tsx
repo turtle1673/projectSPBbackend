@@ -29,10 +29,10 @@ export default function Settings() {
 
     return (
         <>
-            <div className=" p-4 h-screen">
+            <div className=" p-4 h-screen border border-purple-500 overflow-auto">
                 {bloodsugars.length > 0 ?
                     //yes
-                    <div className='grid grid-cols-3 gap-6 p-4'>
+                    <div className='grid grid-cols-4 gap-6 p-4'>
                         {bloodsugars.map(e => (
                             <BloodCart key={e.id} bloodsu={e} />
                         ))}
