@@ -13,7 +13,6 @@ export default function SugarForm() {
   const [result, setResult] = useState('')
   const [potd, setPotd] = useState('none')
   const [errorform, setErrorform] = useState('')
-  const [note, setNote] = useState('')
 
   const router = useRouter()
   const supabase = createClient()
@@ -24,7 +23,7 @@ export default function SugarForm() {
     if (!blood) {
       setErrorform('จำเป็นต้องใส่ข้อมูลตัวเลข')
       setResult('')
-      setNote('')
+      
       return
     }
 
@@ -32,7 +31,7 @@ export default function SugarForm() {
     if (!numValue || numValue <= 0) {
       setErrorform('ข้อมูลต้องเป็นตัวเลขที่มากกว่า 0')
       setBlood('')
-      setNote('')
+      
       return
     }
 
@@ -45,17 +44,6 @@ export default function SugarForm() {
     const calculateResult: calSugarInterface = await res.json()
     setResult(calculateResult.resul)
     setErrorform('')
-
-    // ตรวจสอบค่าระดับน้ำตาล
-    if (numValue <= 69) {
-      setNote('❗ คุณอยู่ในภาวะน้ำตาลต่ำ\n\n กินอาหารที่มีคาร์โบไฮเดรต เช่น ขนมปัง หรือ แครกเกอร์');
-    } else if (numValue >= 70 && numValue <= 100) {
-      setNote('✅ คุณอยู่ในระดับปกติ\n\n ควรรับประทานอาหารที่มีประโยชน์และออกกำลังกาย');
-    } else if (numValue > 100 && numValue <= 125) {
-      setNote('❗ คุณมีภาวะเสี่ยงเบาหวาน\n\n ลดของหวาน ออกกำลังกาย และตรวจน้ำตาลเป็นระยะ');
-    } else {
-      setNote('❗ คุณมีความเสี่ยงเป็นเบาหวาน\n\n ควรพบแพทย์และปรับพฤติกรรมการกิน');
-    }
   }
 
   const savehandler = async (e: any) => {
@@ -72,10 +60,10 @@ export default function SugarForm() {
     setResult('')
     setBlood('')
     setPotd('none')
-    setNote('')
+    
     router.push('/')
   }
-
+  
   return (
     <div className="min-h-screen ">
       <div className="flex flex-col justify-center items-center gap-16 w-full">
@@ -127,11 +115,6 @@ export default function SugarForm() {
         {result && (
           <div className="text-center flex flex-col gap-3">
             <p className="text-6xl font-serif text-emerald-500 mali-bold-italic">{result}</p>
-
-            {note && (
-              <p className="text-2xl font-serif text-emerald-500 mali-bold-italic ">{note}</p>
-
-            )}
           </div>
         )}
       </div>
