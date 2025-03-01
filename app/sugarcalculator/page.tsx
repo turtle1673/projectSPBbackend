@@ -4,7 +4,7 @@ import SugarForm from '../components/SugarForm'
 function page() {
   return (
     <>
-      < SugarForm/>
+    <SugarForm />
     </>
   )
 }
