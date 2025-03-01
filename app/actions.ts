@@ -27,7 +27,7 @@ export async function calAvg(arr: number[]) : Promise<number>{
     return parseFloat((sum / arr.length).toFixed(2))
 }
 
-type dateOption = 'short' | 'long'
+type dateOption = "short" | "long" | "numeric" | "2-digit" | "narrow"
 export const formatDateThai = async (dateString: string | Date, option:dateOption) => {
     const date = new Date(dateString);
     return new Intl.DateTimeFormat("th-TH", {

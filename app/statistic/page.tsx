@@ -2,7 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client'
 import React, { useState, useEffect } from 'react'
-import { calAvg, formatDateThai } from '../actions'
+import { calAvg } from '../actions'
 import { Line } from 'react-chartjs-2'
 import {
   Chart as ChartJS,
@@ -31,6 +31,18 @@ interface IBloodSugar {
   created_at: string
   blood_result: string
 }
+
+type dateOption = "short" | "long" | "numeric" | "2-digit" | "narrow"
+
+
+export const formatDateThai =(dateString: string | Date, option:dateOption) => {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat("th-TH", {
+      day: "numeric",
+      month: option,
+      year: "numeric",
+    }).format(date);
+  };
 
 export default function Page() {
   const [bloodsugars, setBloodsugars] = useState<IBloodSugar[]>([])
@@ -65,13 +77,13 @@ export default function Page() {
   }, [limit])
 
   const data = {
-    labels: bloodsugars.map((e) => new Date(e.created_at).toLocaleDateString()),
+    labels: bloodsugars.map((e) => formatDateThai(e.created_at, 'narrow')),
     datasets: [
       {
         label: 'Blood Sugar Level',
         data: bloodsugars.map((sugar) => sugar.blood_value),
         borderColor: 'rgba(255, 99, 132, 1)',
-        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+        backgroundColor: 'rgba(2, 159, 64, 0.2)',
         fill: true,
       },
     ],
