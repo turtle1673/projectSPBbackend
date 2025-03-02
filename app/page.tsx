@@ -1,13 +1,6 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { createClient } from "@/utils/supabase/client";
-import BloodCart from "./components/BloodCard";
-import Image from "next/image";
-
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center h-screen">
       <div className="flex flex-col items-center justify-center bg-amber-200 rounded-lg mt-10 w-[80%] max-h-[900px] overflow-y-scroll">
         {/* หัวข้อ */}
         <h1 className="text-3xl font-bold text-amber-600 mt-10">

@@ -61,7 +61,7 @@ export default function SugarForm() {
     setBlood('')
     setPotd('none')
     
-    router.push('/')
+    router.push('/profile')
   }
   
   return (

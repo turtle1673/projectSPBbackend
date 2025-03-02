@@ -1,5 +1,4 @@
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
 import { createClient } from '@/utils/supabase/client';
 
 interface BloodCartProps {
@@ -7,8 +6,8 @@ interface BloodCartProps {
     id: number;
     blood_value: number;
     blood_result: string;
-    heart_rate: number;
     created_at: Date;
+    potd:string
   };
 }
 
@@ -40,7 +39,10 @@ export default function BloodCart({ bloodsu }: BloodCartProps) {
   return (
     <div className="col-span-1 bg-yellow-100 border-2 border-yellow-400 rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="flex flex-col gap-4 m-4 h-full">
+        <div className="flex justify-between">
         <p className="text-gray-600 font-medium">{bloodsu.created_at ? formatDateThai(bloodsu.created_at) : "N/A"}</p>
+        <p className="text-amber-600 text-xl mali-bold">{bloodsu.potd}</p>
+        </div>
         <div className="flex flex-col gap-2">
           <div className="text-lg font-semibold text-yellow-700">ระดับน้ำตาล: {bloodsu.blood_value} mg/dL</div>
           <div className="text-xl font-bold text-yellow-800">ผลการประเมิน: {bloodsu.blood_result}</div>

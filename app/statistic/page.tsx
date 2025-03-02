@@ -130,13 +130,14 @@ export default function Page() {
             <p className='text-center bg-[#659287] rounded-lg py-4 text-orange-100 text-lg'>{average ? average : 'Loading...'} mg/dL</p>
           </div>
           <div className='flex flex-col gap-2'>
-            <p className='text-xl'>ค่าน้ำตาลต่ำสุด</p>
-            <p className='text-center bg-[#659287] rounded-lg py-4 text-orange-100 text-lg'>{minblood ? minblood : 'Loading...'} mg/dL</p>
-          </div>
-          <div className='flex flex-col gap-2'>
             <p className='text-xl'>ค่าน้ำตาลสูงสุด</p>
             <p className='text-center bg-[#659287] rounded-lg py-4 text-orange-100 text-lg'>{maxblood ? maxblood : 'Loading...'} mg/dL</p>
           </div>
+          <div className='flex flex-col gap-2'>
+            <p className='text-xl'>ค่าน้ำตาลต่ำสุด</p>
+            <p className='text-center bg-[#659287] rounded-lg py-4 text-orange-100 text-lg'>{minblood ? minblood : 'Loading...'} mg/dL</p>
+          </div>
+          
 
         </div>
       </div>

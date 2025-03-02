@@ -55,9 +55,8 @@ export default function Profile() {
       if (error) {
         console.log(error);
         setBloodsugars([]);
-      } else {
-        setBloodsugars(data);
       }
+      setBloodsugars(data || [])
     };
 
     fetchBloodsugars();
