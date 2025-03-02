@@ -19,7 +19,7 @@ const navElements = [
     { title: 'โปรไฟล์', href: '/profile', icon: <FaUser className='w-6 h-6' /> },
     { title: 'วัดระดับน้ำตาล', href: '/sugarcalculator', icon: <MdBloodtype className='w-6 h-6' /> },
     { title: 'สถิติ', href: '/statistic', icon: <AiOutlineBarChart className='w-6 h-6' /> },
-    { title: 'ตั้งค่า', href: '/settings', icon: <IoSettingsSharp className='w-6 h-6' /> },
+    //{ title: 'ตั้งค่า', href: '/settings', icon: <IoSettingsSharp className='w-6 h-6' /> },
 ];
 
 const Sidebar = () => {
